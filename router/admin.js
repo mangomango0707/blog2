@@ -6,6 +6,7 @@ const admin = express.Router();
 // 挂载二级路由
 
 // 实现登录功能
-admin.post('/login', require('./admin/login'));
+// admin.post('/login', require('./login'));
+// admin.post('/register', require('./admin/register'))
 
 module.exports = admin;

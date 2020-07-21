@@ -35,12 +35,26 @@ app.use(session({
     secret: 'secret key'
 }))
 
-
-
 // 导入路由对象
 const admin = require('./router/admin');
+const home = require('./router/home');
 // 为路由对象匹配一级请求路径
 app.use('/admin', admin);
+app.use('/home', home);
+
+// 错误处理中间件
+// app.use((err, req, res, next) => {
+//     // 把next中的参数err转化为对象
+//     const result = JSON.parse(err);
+//     // 拼接参数
+//     let params = [];
+//     for (let attr in params) {
+//         if (attr != 'path') {
+//             params.push(attr + '=' + result[attr]);
+//         }
+//     }
+//     res.send(`${result.path}?${params.join('&')}`);
+// })
 
 // 监听端口
 app.listen(8081)

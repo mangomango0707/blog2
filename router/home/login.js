@@ -2,7 +2,6 @@
 const { User } = require('../../model/user');
 // 导入加密模块
 const bcrypt = require('bcrypt');
-
 // 导入响应数据模型
 const { SuccessModel, ErrorModel } = require('../../model/resModel');
 
@@ -37,5 +36,4 @@ module.exports = async(req, res) => {
     } else {
         return res.status(400).send(new ErrorModel('邮件地址或者密码错误！'));
     }
-
-}
+};
