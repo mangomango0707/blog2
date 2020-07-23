@@ -28,11 +28,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'normal'
     },
-    // 0 启用状态
-    // 1 禁用状态
+    // true 启用状态
+    // false 禁用状态
     state: {
-        type: Number,
-        default: 0
+        type: Boolean,
+        default: true
     }
 });
 
@@ -47,7 +47,7 @@ const validateUser = user => {
         email: Joi.string().email().required().error(new Error('邮箱地址不符合要求')),
         password: Joi.string().regex(/^[a-zA-Z0-9]{2,30}$/).required().error(new Error('密码不符合要求')),
         role: Joi.string().valid('normal', 'admin').error(new Error('角色非法')),
-        state: Joi.number().valid(0, 1).error(new Error('状态非法'))
+        state: Joi.boolean().valid(0, 1).error(new Error('状态非法'))
     };
     // 进行验证
     return Joi.validate(user, Schema);

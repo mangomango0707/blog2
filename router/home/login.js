@@ -4,6 +4,8 @@ const { User } = require('../../model/user');
 const bcrypt = require('bcrypt');
 // 导入响应数据模型
 const { SuccessModel, ErrorModel } = require('../../model/resModel');
+// 导入jwt token工具
+const jwt = require('jsonwebtoken');
 
 module.exports = async(req, res) => {
     // 接收post请求参数
@@ -28,7 +30,12 @@ module.exports = async(req, res) => {
             // 将用户信息保存到app的local中供全局使用
             req.app.locals.userInfo = user;
 
-            res.send(new SuccessModel(user, "登录成功"));
+            // 登录成功，添加token
+            // 将用户id传入并生成token
+            let token = jwt.sign({ userId: user._id }, 'Fizz', { expiresIn: 60 * 60 });
+            // console.log(token);
+            // 将token返回给客户端
+            res.send(new SuccessModel(user, "登录成功", token));
         } else {
             // 密码比对失败
             return res.status(400).send(new ErrorModel('邮件地址或者密码错误！'));
