@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // 导入express-session模块实现session功能
 const session = require('express-session');
+const path = require('path');
 
 // 创建网站服务器
 const app = express();
@@ -35,12 +36,69 @@ app.use(session({
     secret: 'secret key'
 }))
 
+
+// var multer = require('multer')
+// const formidable = require('formidable');
+// // const upload = multer({ dest: path.join(__dirname, '../', '../', 'public', 'uploads') });
+
+// // app.use(upload.single('file')); //
+
+// app.post('/upload', (req, res) => {
+//     // console.log(req.body); //获取到的age和name
+//     // console.log(req.file); //获取到的文件
+
+//     // 创建表单解析对象
+//     const form = new formidable.IncomingForm();
+
+//     // 配置上传文件的存放位置(绝对路径)
+//     form.uploadDir = path.join(__dirname, '../', '../', 'public', 'uploads');
+
+//     // 保留上传文件的后缀
+//     form.keepExtensions = true;
+
+//     // 解析表单
+//     form.parse(req, async(err, fields, files) => {
+//         // err：错误对象，if表单解析错误，err即存储错误信息，成功则为null
+//         // fields：对象类型，保存普通表单数据
+//         // files：对象类型，保存和文件上传相关的数据
+
+//         // 添加文章到数据库
+//         console.log(fields);
+//         console.log(files);
+
+//         let user = await User.findOne({ username: fields.author });
+//         if (user) {
+//             const article = await Article.create({
+//                 title: fields.title,
+//                 author: user._id,
+//                 publishDate: fields.publishDate,
+//                 pic: (files.path || '').split('public')[1],
+//                 content: fields.content
+//             });
+
+//             console.log(article);
+//             res.send(new SuccessModel(article, '添加文章成功！'));
+//         } else {
+//             res.send(new ErrorModel('添加失败或者该作者不是用户，请先注册！'));
+//         }
+
+
+
+//     });
+
+//     // res.send('ok');
+//     //做些其他事情
+// })
+
+
 // 导入路由对象
 const admin = require('./router/admin');
 const home = require('./router/home');
+
 // 为路由对象匹配一级请求路径
 app.use('/admin', admin);
 app.use('/home', home);
+// app.use('/file', require('./router/admin/upload'));
 
 // 错误处理中间件
 // app.use((err, req, res, next) => {

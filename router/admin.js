@@ -18,4 +18,15 @@ admin.put('/editUser/:id', require('./admin/userEdit'));
 // 删除用户
 admin.delete('/deleteUser/:id', require('./admin/userDelete'));
 
+// 添加文章
+admin.post('/addArticle', require('./admin/articleAdd'));
+// 获取文章列表数据
+admin.get('/articles', require('./admin/articles'));
+// 根据id查询文章信息
+admin.get('/findArticle/:id', require('./admin/articleFindById'));
+// 修改文章
+admin.put('/editArticle/:id', require('./admin/articleEdit'));
+// 删除文章
+admin.delete('/deleteArticle/:id', require('./admin/articleDelete'));
+
 module.exports = admin;
