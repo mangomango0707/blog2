@@ -24,9 +24,15 @@ admin.post('/addArticle', require('./admin/articleAdd'));
 admin.get('/articles', require('./admin/articles'));
 // 根据id查询文章信息
 admin.get('/findArticle/:id', require('./admin/articleFindById'));
+// 根据userId查询文章信息
+admin.get('/findArticleByUserId/:id', require('./admin/articleFindByUserId'));
 // 修改文章
 admin.put('/editArticle/:id', require('./admin/articleEdit'));
 // 删除文章
 admin.delete('/deleteArticle/:id', require('./admin/articleDelete'));
+// 更改头像
+admin.post('/editAvatar/:id', require('./admin/editAvatar'));
 
+// 获取登录用户信息
+admin.get('/getUserInfo', require('./admin/getUserInfo'));
 module.exports = admin;

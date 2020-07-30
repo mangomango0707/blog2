@@ -39,11 +39,11 @@ module.exports = async(req, res) => {
             total = data.length;
             totalpage = Math.ceil(total / pagesize);
             return res.status(200).send({ totalpage: totalpage, pagenum: pagenum, total: total, articles: data, message: '获取文章数据成功', code: 1 })
-        }).populate('author');
+        }).sort({ publishDate: -1 }).populate('author');
     } else {
         // 获取用户数据,limit函数只能接收number类型，而前端传过来的是字符串，故需转化为number类型，- 0即可
-        let articles = await Article.find({}).populate('author').limit(pagesize - 0).skip(start);
-        // console.log(articles);
+        let articles = await Article.find({}).sort({ publishDate: -1 }).populate('author').limit(pagesize - 0).skip(start);
+        console.log(articles);
         res.send({ totalpage: totalpage, pagenum: pagenum, total: total, articles: articles, message: '获取文章数据成功', code: 1 });
     }
 }

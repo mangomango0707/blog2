@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    // 头像
+    avatar: {
+        type: String,
+        default: null
+    },
     // admin 超级管理员
     // normal 普通用户
     role: {

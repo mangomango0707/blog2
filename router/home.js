@@ -10,4 +10,9 @@ home.post('/login', require('./home/login'));
 // 实现注册功能
 home.post('/register', require('./home/register'));
 
+// 获取文章
+// home.get('/home', require('./admin/articles'));
+// 修改用户头像
+home.post('/editAvatar/:id', require('./home/editAvatar'));
+
 module.exports = home;
