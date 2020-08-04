@@ -14,5 +14,9 @@ home.post('/register', require('./home/register'));
 // home.get('/home', require('./admin/articles'));
 // 修改用户头像
 home.post('/editAvatar/:id', require('./home/editAvatar'));
+// 评论文章
+home.post('/comment', require('./home/comment'));
+// 获取评论列表
+home.get('/getComment/:id', require('./home/getComment'));
 
 module.exports = home;
